@@ -6,6 +6,7 @@ import { errorHandler } from "./utils/errorHandler";
 import { notFoundHandler } from "./utils/notFoundHandler";
 import { authErrorHandler } from "./utils/authErrorHandler";
 import { bodyParserErrorHandler } from "./utils/bodyParserErrorHandler";
+import PersonRouter from "./person/PersonRouter";
 
 const app = express();
 
@@ -24,7 +25,7 @@ app.use(
 app.use(helmet());
 
 // Allow express to parse JSON bodies.
-app.use(express.json({ limit: "30mb" }));
+app.use(express.json());
 
 
 //#region Application routes
@@ -35,12 +36,7 @@ app.use(express.json({ limit: "30mb" }));
  *
  * This is documented in https://github.com/pillarjs/router/issues/38
  */
-
-// Declare routes here, do not forget to add some versioning to the API
-app.get('/', (req, res) => {
-    res.send("Hello world");
-});
-
+app.use('/v1/person', PersonRouter);
 //#endregion Application routes
 
 // Handle requests matching no routes.
