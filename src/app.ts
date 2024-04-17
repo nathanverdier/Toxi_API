@@ -18,34 +18,11 @@ const { auth, requiredScopes } = require('express-oauth2-jwt-bearer');
 
 // auth0 middleware
 const checkJwt = auth({
-    audience: '{yourApiIdentifier}',
-    issuerBaseURL: `https://{yourDomain}/`,
-  });
-  
+    audience: 'Toxi-Api', // Remplacez par votre identifiant d'API
+    issuerBaseURL: 'https://toxiapi/', // Remplacez par votre domaine
+});
 
-// exemple d'utilisation des routes avec auth0
-
-// // This route doesn't need authentication
-// app.get('/api/public', function(req, res) {
-//     res.json({
-//       message: 'Hello from a public endpoint! You don\'t need to be authenticated to see this.'
-//     });
-//   });
-  
-//   // This route needs authentication
-//   app.get('/api/private', checkJwt, function(req, res) {
-//     res.json({
-//       message: 'Hello from a private endpoint! You need to be authenticated to see this.'
-//     });
-//   });
-  
-//   const checkScopes = requiredScopes('read:messages');
-  
-//   app.get('/api/private-scoped', checkJwt, checkScopes, function(req, res) {
-//     res.json({
-//       message: 'Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this.'
-//     });
-//   });
+app.use(checkJwt);
 
 // Add CORS headers.
 app.use(
