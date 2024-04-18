@@ -1,3 +1,4 @@
+require('dotenv').config();
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -6,7 +7,6 @@ import { errorHandler } from "./utils/errorHandler";
 import { notFoundHandler } from "./utils/notFoundHandler";
 import { authErrorHandler } from "./utils/authErrorHandler";
 import { bodyParserErrorHandler } from "./utils/bodyParserErrorHandler";
-import PersonRouter from "./person/PersonRouter";
 
 const app = express();
 
@@ -17,12 +17,27 @@ app.use(morgan("dev"));
 const { auth, requiredScopes } = require('express-oauth2-jwt-bearer');
 
 // auth0 middleware
-const checkJwt = auth({
-    audience: 'Toxi-Api', // Remplacez par votre identifiant d'API
-    issuerBaseURL: 'https://toxiapi/', // Remplacez par votre domaine
-});
+let checkJwt: any;
 
-app.use(checkJwt);
+export function initializeCheckJwt() {
+    if (!checkJwt) {
+        try {
+            checkJwt = auth({
+                audience: 'https://toxiapi/',
+                issuerBaseURL: 'https://dev-3ja73wpfp1j6uzed.us.auth0.com/',
+                tokenSigningAlg: 'RS256'
+            });
+            console.log('Auth initialized');
+        } catch (error) {
+            console.error('Erreur lors de l\'initialisation de auth :', error);
+        }
+    }
+    return checkJwt;
+}
+
+app.use(initializeCheckJwt());
+
+import PersonRouter from "./person/PersonRouter";
 
 // Add CORS headers.
 app.use(
@@ -61,6 +76,5 @@ app.use(authErrorHandler);
 
 // Handle body parser syntax errors
 app.use(bodyParserErrorHandler);
-
 
 export default app;

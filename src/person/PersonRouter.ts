@@ -1,11 +1,13 @@
 import express from "express";
+import { initializeCheckJwt } from "../app";
 import { personService } from "./PersonService";
-import checkJwt from "../app"; // importez le middleware d'authentification
+
+const checkJwt = initializeCheckJwt();
 
 const PersonRouter = express.Router();
 
 PersonRouter.route('/')
-    .get(checkJwt, async (_, res) => { // utilisez le middleware d'authentification
+    .get(checkJwt, async (_, res) => {
         try {
             const persons = await personService.getAll();
             console.log(persons);
@@ -15,7 +17,7 @@ PersonRouter.route('/')
             res.status(500).json({ message: 'Une erreur est survenue lors de la récupération des personnes.' });
         }
     })
-    .post(checkJwt, (_, res) => { // utilisez le middleware d'authentification
+    .post(checkJwt, (_, res) => {
         res.json("coucou post");
     });
 
