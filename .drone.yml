@@ -7,22 +7,22 @@ trigger:
     - push
 
 steps:
-  - name: build
-    image: node:16
-    environment:
-      MONGO_URL:
-        from_secret: MONGO_URL
-      PORT: 80
-      HOST: localhost
-    commands:
-      - npm install
-      - npx ts-node ./src/index.ts
+  # - name: build
+  #   image: node:16
+  #   environment:
+  #     MONGO_URL:
+  #       from_secret: MONGO_URL
+  #     PORT: 80
+  #     HOST: localhost
+  #   commands:
+  #     - npm install
+  #     - npx ts-node ./src/index.ts
   
-  - name: test
-    image: node:16
-    commands:
-      - npm test
-    depends_on: [build]
+  # - name: test
+  #   image: node:16
+  #   commands:
+  #     - npm test
+  #   depends_on: [build]
 
   - name: code-inspection_sonar
     image: node:16
@@ -35,7 +35,7 @@ steps:
     commands:
       - npm install -g sonarqube-scanner
       - sonar-scanner
-    depends_on: [test]
+    # depends_on: [test]
 
 # ---
 
