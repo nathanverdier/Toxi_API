@@ -17,6 +17,7 @@ steps:
     image: node:14
     commands:
       - npm test
+    depends_on: [build]
 
   - name: code-inspection_sonar
     image: node:14
