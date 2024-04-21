@@ -19,7 +19,7 @@ steps:
       - npx ts-node ./src/index.ts
   
   - name: test
-    image: node:14
+    image: node:16
     commands:
       - npm test
     depends_on: [build]
