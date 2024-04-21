@@ -29,12 +29,13 @@ steps:
     secrets: [ Login_Sonar_Toxi_API ]
     settings:
       sonar_project_key: Toxi_API
+      project_sources: ./src
       sonar_host: https://codefirst.iut.uca.fr/sonar/
       sonar_token:
         from_secret: Login_Sonar_Toxi_API
     commands:
       - npm install -g sonarqube-scanner
-      - sonar-scanner -Dsonar.projectKey=$${project_key} -Dsonar.login=$${sonar_token} -Dsonar.sources=$${project_sources} -Dsonar.host.url=$${sonar_host}
+      - sonar-scanner -Dsonar.projectKey=$${sonar_project_key} -Dsonar.login=$${sonar_token} -Dsonar.sources=$${project_sources} -Dsonar.host.url=$${sonar_host}
     # depends_on: [test]
 
 # ---
