@@ -24,19 +24,22 @@ steps:
   #     - npm test
   #   depends_on: [build]
 
-  - name: code-inspection_sonar
+  - name: code-analysis
     image: node:16
-    secrets: [ Login_Sonar_Toxi_API ]
-    settings:
-      sonar_project_key: toxiAPI
-      project_sources: ./src
-      sonar_host: https://codefirst.iut.uca.fr/sonar/
-      sonar_token:
+    environment:
+      SONAR_TOKEN:
         from_secret: Login_Sonar_Toxi_API
+    settings:
+      sources: ./src
     commands:
-      - npm install -g sonarqube-scanner
-      - sonar-scanner -Dsonar.projectKey=$${sonar_project_key} -Dsonar.login=$${sonar_token} -Dsonar.sources=$${project_sources} -Dsonar.host.url=$${sonar_host}
-    # depends_on: [test]
+      - export SONAR_SCANNER_VERSION=4.7.0.2747
+      - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+      - curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+      - unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+      - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
+      - export SONAR_SCANNER_OPTS="-server"
+      - sonar-scanner -X -D sonar.projectKey=toxiAPI -D sonar.host.url=https://codefirst.iut.uca.fr/sonar
+    depends_on: [ api-build ]
 
 # ---
 
