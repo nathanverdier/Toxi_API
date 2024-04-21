@@ -12,6 +12,8 @@ steps:
     environment:
       MONGO_URL:
         from_secret: MONGO_URL
+      PORT: 80
+      HOST: localhost
     commands:
       - npm install
       - npx ts-node ./src/index.ts
