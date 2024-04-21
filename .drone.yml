@@ -8,10 +8,10 @@ trigger:
 
 steps:
   - name: build
-    image: node:14
+    image: node:16
     commands:
       - npm install
-      - npm run build
+      - npm run dev
   
   - name: test
     image: node:14
