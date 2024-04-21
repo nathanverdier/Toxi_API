@@ -28,7 +28,7 @@ steps:
     image: node:16
     secrets: [ Login_Sonar_Toxi_API ]
     settings:
-      sonar_project_key: Toxi_API
+      sonar_project_key: toxiAPI
       project_sources: ./src
       sonar_host: https://codefirst.iut.uca.fr/sonar/
       sonar_token:
