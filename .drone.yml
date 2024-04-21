@@ -57,8 +57,8 @@ steps:
 #        dockerfile: Dockerfile
 #        context: .
 #        registry: hub.codefirst.iut.uca.fr
-#        repo: hub.codefirst.iut.uca.fr/nathan.verdier/cicd_java_backend_personal_library
+#        repo: hub.codefirst.iut.uca.fr/nathan.verdier/toxic-api
 #        username:
-#          from_secret: REGISTRY_USERNAME
+#          from_secret: 
 #        password:
-#          from_secret: REGISTRY_PASSWORD
+#          from_secret: 
