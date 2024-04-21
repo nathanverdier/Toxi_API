@@ -25,7 +25,7 @@ steps:
     depends_on: [build]
 
   - name: code-inspection_sonar
-    image: node:14
+    image: node:16
     secrets: [ Login_Sonar_Toxi_API ]
     settings:
       sonar_project_key: Toxi_API
