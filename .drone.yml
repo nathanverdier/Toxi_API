@@ -1,0 +1,58 @@
+kind: pipeline
+type: docker
+name: CI_Toxic_API
+
+trigger:
+  event:
+    - push
+
+steps:
+  - name: build
+    image: node:14
+    commands:
+      - npm install
+      - npm run build
+  
+  - name: test
+    image: node:14
+    commands:
+      - npm test
+
+  - name: code-inspection_sonar
+    image: node:14
+    secrets: [ Login_Sonar_Toxi_API ]
+    settings:
+      sonar_project_key: Toxi_API
+      sonar_host: https://codefirst.iut.uca.fr/sonar/
+      sonar_token:
+        from_secret: Login_Sonar_Toxi_API
+    commands:
+      - npm install -g sonarqube-scanner
+      - sonar-scanner
+    depends_on: [test]
+
+# ---
+
+# kind: pipeline
+# type: docker
+# name: CD_Toxic_API
+
+# trigger:
+#   branch:
+#     - master
+#   event:
+#     - push
+
+
+# steps:
+#   - name: docker-build-and-push
+#     image: plugins/docker
+#     settings:
+#        dockerfile: Dockerfile
+#        context: .
+#        registry: hub.codefirst.iut.uca.fr
+#        repo: hub.codefirst.iut.uca.fr/nathan.verdier/cicd_java_backend_personal_library
+#        username:
+#          from_secret: REGISTRY_USERNAME
+#        password:
+#          from_secret: REGISTRY_PASSWORD
