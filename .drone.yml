@@ -39,7 +39,6 @@ steps:
       - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
       - export SONAR_SCANNER_OPTS="-server"
       - sonar-scanner -X -D sonar.projectKey=toxiAPI -D sonar.host.url=https://codefirst.iut.uca.fr/sonar
-    depends_on: [ api-build ]
 
 # ---
 
