@@ -11,7 +11,7 @@ steps:
     image: node:16
     commands:
       - npm install
-      - npm run dev
+      - npx ts-node ./src/index.ts
   
   - name: test
     image: node:14
