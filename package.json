@@ -4,9 +4,9 @@
   "description": "API for the project Toxi_Reality",
   "main": "index.ts",
   "scripts": {
+    "start": "node ./dist/index.js",
     "dev": "tsnd --respawn --transpile-only --rs ./src/index.ts",
-    "prod": "echo Bonjour",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "author": "ToxiTeam",
   "license": "ISC",
