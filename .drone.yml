@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: CI_Toxic_API
+name: CI_Toxi_API
 
 trigger:
   event:
@@ -44,7 +44,7 @@ steps:
 
 kind: pipeline
 type: docker
-name: CD_Toxic_API
+name: CD_Toxi_API
 
 trigger:
   branch:
@@ -53,15 +53,26 @@ trigger:
     - push
 
 
-# steps:
-#   - name: docker-build-and-push
-#     image: plugins/docker
-#     settings:
-#        dockerfile: Dockerfile
-#        context: .
-#        registry: hub.codefirst.iut.uca.fr
-#        repo: hub.codefirst.iut.uca.fr/nathan.verdier/toxic-api
-#        username:
-#          from_secret: 
-#        password:
-#          from_secret: 
+steps:
+  - name: docker-build-and-push
+    image: plugins/docker
+    settings:
+       dockerfile: Dockerfile
+       context: .
+       registry: hub.codefirst.iut.uca.fr
+       repo: hub.codefirst.iut.uca.fr/toxiteam/toxi-api
+       username:
+         from_secret: SECRET_REGISTRY_USERNAME
+       password:
+         from_secret: SECRET_REGISTRY_PASSWORD
+
+# - name: deploy-container
+#     image: hub.codefirst.iut.uca.fr/toxiteam/toxi-api:latest
+#     environment:
+#       IMAGENAME: hub.codefirst.iut.uca.fr/toxiteam/toxi-api:latest
+#       CONTAINERNAME: toxi-api
+#       COMMAND: create
+#       OVERWRITE: true
+#       ADMINS: naverdier, lubedouret, chmourgand
+#       CODEFIRST_CLIENTDRONE_ENV_API_BASEURL: http://toxi.alwaysdata.net/
+#     depends_on: [ docker-build-and-push ]
