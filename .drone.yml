@@ -42,15 +42,15 @@ steps:
 
 # ---
 
-# kind: pipeline
-# type: docker
-# name: CD_Toxic_API
+kind: pipeline
+type: docker
+name: CD_Toxic_API
 
-# trigger:
-#   branch:
-#     - master
-#   event:
-#     - push
+trigger:
+  branch:
+    - master
+  event:
+    - push
 
 
 # steps:
