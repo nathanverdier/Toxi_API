@@ -66,13 +66,13 @@ steps:
        password:
          from_secret: SECRET_REGISTRY_PASSWORD
 
-# - name: deploy-container
-#     image: hub.codefirst.iut.uca.fr/toxiteam/toxi-api:latest
-#     environment:
-#       IMAGENAME: hub.codefirst.iut.uca.fr/toxiteam/toxi-api:latest
-#       CONTAINERNAME: toxi-api
-#       COMMAND: create
-#       OVERWRITE: true
-#       ADMINS: naverdier, lubedouret, chmourgand
-#       CODEFIRST_CLIENTDRONE_ENV_API_BASEURL: http://toxi.alwaysdata.net/
-#     depends_on: [ docker-build-and-push ]
+  - name: deploy-container
+    image: hub.codefirst.iut.uca.fr/toxiteam/toxi-api:latest
+    environment:
+      IMAGENAME: hub.codefirst.iut.uca.fr/toxiteam/toxi-api:latest
+      CONTAINERNAME: toxi-api
+      COMMAND: create
+      OVERWRITE: true
+      ADMINS: naverdier, lubedouret, chmourgand
+      CODEFIRST_CLIENTDRONE_ENV_API_BASEURL: http://toxi.alwaysdata.net/
+    depends_on: [ docker-build-and-push ]
