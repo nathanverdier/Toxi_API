@@ -41,6 +41,7 @@ export function initializeCheckJwt() {
 app.use(initializeCheckJwt());
 
 import PersonRouter from "./person/PersonRouter";
+import IdentityRouter from "./identity/IdentityRouter";
 
 // Add CORS headers.
 app.use(
@@ -66,6 +67,7 @@ app.use(express.json());
  * This is documented in https://github.com/pillarjs/router/issues/38
  */
 app.use('/v1/person', PersonRouter);
+app.use('/v1/identity', IdentityRouter);
 //#endregion Application routes
 
 // Handle requests matching no routes.
