@@ -23,7 +23,7 @@ Pour lancer le projet, utilisez la commande :
 
 Si tout marche correctement, vous devrez voir les messages suivants:
 
-![api works](Images/readme_api_works)
+![api works](Images/readme_api_works.png)
 
 # :construction_worker: Développeurs
 
