@@ -6,6 +6,9 @@
 
 ## Description du repository
 
+Ce repository contient le dossier src/. C'est dans ce dernier que vous trouverez tout le code de notre API.
+Le repository contient aussi tout ce qui permet le déploiement de notre API.
+
 ## Lancer le Projet
 
 Pour lancer le projet, vous devez disposer de la dernière version de node sur votre PC. 
