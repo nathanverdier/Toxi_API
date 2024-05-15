@@ -32,7 +32,6 @@ export function initializeCheckJwt() {
             });
             console.log('Auth initialized');
         } catch (error) {
-            console.error('Erreur lors de l\'initialisation de auth :', error);
         }
     }
     return checkJwt;
@@ -42,6 +41,7 @@ app.use(initializeCheckJwt());
 
 import PersonRouter from "./person/PersonRouter";
 import IdentityRouter from "./identity/IdentityRouter";
+import { Boom } from "@hapi/boom";
 
 // Add CORS headers.
 app.use(
