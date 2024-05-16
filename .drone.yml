@@ -56,6 +56,9 @@ trigger:
 steps:
   - name: docker-build-and-push
     image: plugins/docker
+    environment:
+      MONGO_URL:
+        from_secret: MONGO_URL
     settings:
        dockerfile: Dockerfile
        context: .
