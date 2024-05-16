@@ -7,16 +7,16 @@ trigger:
     - push
 
 steps:
-   - name: build
-     image: node:16
-     environment:
-       MONGO_URL:
-         from_secret: MONGO_URL
-       PORT: 80
-       HOST: localhost
-     commands:
-       - npm install
-       - npx ts-node ./src/index.ts
+  - name: build
+    image: node:16
+    environment:
+      MONGO_URL:
+        from_secret: MONGO_URL
+      PORT: 80
+      HOST: localhost
+    commands:
+      - npm install
+      - npx ts-node ./src/index.ts
   
   # - name: test
   #   image: node:16
