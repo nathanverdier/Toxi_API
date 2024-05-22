@@ -73,8 +73,6 @@ steps:
       CONTAINERNAME: toxi-api
       COMMAND: create
       OVERWRITE: true
-      MONGO_URL:
-        from_secret: MONGO_URL
       ADMINS: nathanverdier,luciebedouret,chloemourgand
       CODEFIRST_CLIENTDRONE_ENV_API_BASEURL: http://toxi-api.net/
     depends_on: [ docker-build-and-push ]
