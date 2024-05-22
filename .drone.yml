@@ -68,6 +68,7 @@ steps:
 
   - name: deploy-container
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    environment:
       IMAGENAME: hub.codefirst.iut.uca.fr/toxiteam/toxi-api:latest
       CONTAINERNAME: toxi-api
       COMMAND: create
