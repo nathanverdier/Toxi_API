@@ -9,8 +9,8 @@ trigger:
 steps:
   - name: build
     image: node:16
-    environment:
-      MONGO_URL: mongodb+srv://Chloie:9F2BnmQiqtoIYPME@toxireality.6gajwjb.mongodb.net/?retryWrites=true&w=majority&appName=ToxiReality&ssl=true
+    #environment:
+    #  MONGO_URL: mongodb+srv://Chloie:9F2BnmQiqtoIYPME@toxireality.6gajwjb.mongodb.net/?retryWrites=true&w=majority&appName=ToxiReality&ssl=true
        # from_secret: MONGO_URL
       PORT: 80
       HOST: localhost
@@ -73,6 +73,7 @@ steps:
       CONTAINERNAME: toxi-api
       COMMAND: create
       OVERWRITE: true
+      MONGO_URL: mongodb+srv://Chloie:9F2BnmQiqtoIYPME@toxireality.6gajwjb.mongodb.net/?retryWrites=true&w=majority&appName=ToxiReality&ssl=true
       ADMINS: nathanverdier,luciebedouret,chloemourgand
       CODEFIRST_CLIENTDRONE_ENV_API_BASEURL: http://toxi-api.net/
     depends_on: [ docker-build-and-push ]
