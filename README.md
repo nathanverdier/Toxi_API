@@ -24,9 +24,7 @@ Vous devrez compléter le **MONGO_URL=** avec l'adresse de la base de donnée mo
 Pour lancer le projet, utilisez la commande :
 ``` npm run dev ``` 
 
-Si tout marche correctement, vous devrez voir les messages suivants:
-
-![api works](Images/readme_api_works.png)
+Si tout marche correctement, vous devrez voir le message : Connected to database client.
 
 # :construction_worker: Développeurs
 
