@@ -9,7 +9,7 @@ trigger:
 steps:
   - name: build
     image: node:16
-    #environment:
+    environment:
     #  MONGO_URL: mongodb+srv://Chloie:9F2BnmQiqtoIYPME@toxireality.6gajwjb.mongodb.net/?retryWrites=true&w=majority&appName=ToxiReality&ssl=true
        # from_secret: MONGO_URL
       PORT: 80
