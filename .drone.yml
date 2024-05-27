@@ -20,7 +20,6 @@ steps:
       - npm install
       - npx ts-node ./src/index.ts
 
-steps:
   - name: docker-build-and-push
     image: plugins/docker
     settings:
