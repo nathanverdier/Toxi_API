@@ -1,49 +1,5 @@
 kind: pipeline
 type: docker
-name: CI_Toxi_API
-
-trigger:
-  event:
-    - push
-
-steps:
-  - name: build
-    image: node
-    environment:
-  #    MONGO_URL: 
-  #      from_secret: MONGO_URL
-      PORT: 80
-      HOST: localhost
-    commands:
-      - npm install
-      - npx ts-node ./src/index.ts
-  
-  # - name: test
-  #   image: node:16
-  #   commands:
-  #     - npm test
-  #   depends_on: [build]
-
-  - name: code-analysis
-    image: node
-    environment:
-      SONAR_TOKEN:
-        from_secret: Login_Sonar_Toxi_API
-    settings:
-      sources: ./src
-    commands:
-      - export SONAR_SCANNER_VERSION=4.7.0.2747
-      - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
-      - curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
-      - unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-      - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
-      - export SONAR_SCANNER_OPTS="-server"
-      - sonar-scanner -X -D sonar.projectKey=toxiAPI -D sonar.host.url=https://codefirst.iut.uca.fr/sonar
-
-# ----
-
-kind: pipeline
-type: docker
 name: CD_Toxi_API
 
 trigger:
