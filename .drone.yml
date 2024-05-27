@@ -10,8 +10,8 @@ steps:
   - name: build
     image: node
     environment:
-      MONGO_URL: 
-        from_secret: MONGO_URL
+  #    MONGO_URL: 
+  #      from_secret: MONGO_URL
       PORT: 80
       HOST: localhost
     commands:
@@ -52,6 +52,17 @@ trigger:
   event:
     - push
 
+steps:
+  - name: build
+    image: node
+    environment:
+      MONGO_URL: 
+        from_secret: MONGO_URL
+      PORT: 80
+      HOST: localhost
+    commands:
+      - npm install
+      - npx ts-node ./src/index.ts
 
 steps:
   - name: docker-build-and-push
