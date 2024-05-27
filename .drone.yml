@@ -9,10 +9,10 @@ trigger:
     - push
 
 steps:
-   - name: print-env
-    image: busybox
-    commands:
-      - printenv
+  - name: print-env
+  image: busybox
+  commands:
+    - printenv
       
   - name: build
     image: node
