@@ -13,8 +13,8 @@ steps:
   - name: build
     image: node
     environment:
- #     CODEFIRST_CLIENTDRONE_ENV_DB_SERVER:
- #         from_secret: db_server
+      CODEFIRST_CLIENTDRONE_ENV_DB_SERVER:
+        from_secret: db_server
       CODEFIRST_CLIENTDRONE_ENV_MONGO_INITDB_ROOT_USERNAME: 
         from_secret: mongo_root_username
       CODEFIRST_CLIENTDRONE_ENV_MONGO_INITDB_ROOT_PASSWORD:
@@ -23,7 +23,7 @@ steps:
       CODEFIRST_CLIENTDRONE_ENV_MONGO_URL:
         from_secret: MONGO_URL
       PORT: 80
-      HOST: localhost
+      HOST: "localhost"
     commands:
       - npm install
       - npm run build
