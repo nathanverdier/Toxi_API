@@ -13,12 +13,13 @@ steps:
   - name: build
     image: node
     environment:
-       MONGO_INITDB_ROOT_USERNAME: 
+      MONGO_INITDB_ROOT_USERNAME: 
         from_secret: mongo_root_username
-        MONGO_INITDB_ROOT_PASSWORD:
-          from_secret: mongo_root_password
-        MONGO_INITDB_DATABASE: "toxi_db"
-        MONGO_URL: "toxiteam-toxi_db"
+      MONGO_INITDB_ROOT_PASSWORD:
+        from_secret: mongo_root_password
+      MONGO_INITDB_DATABASE: "toxi_db"
+      MONGO_URL:
+        from_secret: MONGO_URL
       PORT: 80
       HOST: localhost
     commands:
