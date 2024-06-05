@@ -22,8 +22,8 @@ steps:
       CODEFIRST_CLIENTDRONE_ENV_MONGO_INITDB_DATABASE: "toxi_db"
       CODEFIRST_CLIENTDRONE_ENV_MONGO_URL:
         from_secret: MONGO_URL
-      CODEFIRST_CLIENTDRONE_ENV_PORT: 5000
-      CODEFIRST_CLIENTDRONE_ENV_HOST: localhost
+      PORT: 80
+      HOST: localhost
     commands:
       - npm install
       - npm run build
