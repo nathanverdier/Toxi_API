@@ -49,4 +49,3 @@ steps:
       ADMINS: nathanverdier,luciebedouret,chloemourgand
       CODEFIRST_CLIENTDRONE_ENV_API_BASEURL: http://toxi-api.net/
     depends_on: [ docker-build-and-push ]
-    
