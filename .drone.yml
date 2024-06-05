@@ -9,16 +9,16 @@ trigger:
     - push
 
 steps:
-  - name: print-env
-    image: busybox
-    commands:
-      - printenv    
  
   - name: build
     image: node
     environment:
-      MONGO_URL: 
-        from_secret: MONGO_URL
+       MONGO_INITDB_ROOT_USERNAME: 
+        from_secret: mongo_root_username
+        MONGO_INITDB_ROOT_PASSWORD:
+          from_secret: mongo_root_password
+        MONGO_INITDB_DATABASE: "toxi_db"
+        MONGO_URL: "ToxiTeam-toxi_db"
       PORT: 80
       HOST: localhost
     commands:
