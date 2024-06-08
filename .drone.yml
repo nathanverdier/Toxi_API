@@ -11,7 +11,7 @@ trigger:
 steps:
  
   - name: build
-    image: node
+    image: node:latest
     environment:
       CODEFIRST_CLIENTDRONE_ENV_DB_SERVER:
         from_secret: db_server
@@ -22,8 +22,8 @@ steps:
       CODEFIRST_CLIENTDRONE_ENV_MONGO_INITDB_DATABASE: "toxi_db"
       CODEFIRST_CLIENTDRONE_ENV_MONGO_URL:
         from_secret: MONGO_URL
-      CODEFIRST_CLIENTDRONE_ENV_PORT: 80
-      CODEFIRST_CLIENTDRONE_ENV_HOST: 0.0.0.0
+      CODEFIRST_CLIENTDRONE_ENV_PORT: 8081
+      CODEFIRST_CLIENTDRONE_ENV_HOST: "0.0.0.0"
     commands:
       - npm install
       - npm run build
@@ -48,15 +48,10 @@ steps:
       CONTAINERNAME: toxi-api
       COMMAND: create
       OVERWRITE: true
-      CODEFIRST_CLIENTDRONE_ENV_MONGO_INITDB_ROOT_USERNAME: 
-        from_secret: mongo_root_username
-      CODEFIRST_CLIENTDRONE_ENV_MONGO_INITDB_ROOT_PASSWORD:
-        from_secret: mongo_root_password
-      CODEFIRST_CLIENTDRONE_ENV_MONGO_INITDB_DATABASE: "toxi_db"
       CODEFIRST_CLIENTDRONE_ENV_MONGO_URL:
         from_secret: MONGO_URL
-      CODEFIRST_CLIENTDRONE_ENV_PORT: 80
-      CODEFIRST_CLIENTDRONE_ENV_HOST: localhost
+      CODEFIRST_CLIENTDRONE_ENV_PORT: 8081
+      CODEFIRST_CLIENTDRONE_ENV_HOST: "0.0.0.0"
       ADMINS: nathanverdier,luciebedouret,chloemourgand
       CODEFIRST_CLIENTDRONE_ENV_API_BASEURL: http://toxi-api.net/
     depends_on: [ docker-build-and-push ]
