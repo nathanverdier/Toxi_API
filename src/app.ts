@@ -14,7 +14,7 @@ const app = express();
 app.use(morgan("tiny"));
 
 app.get('/', function (req, res) {
-    res.send('hello, world!')
+    res.send('Welcome to ToxiAPI!')
   })
 
 const { auth, requiredScopes } = require('express-oauth2-jwt-bearer');
