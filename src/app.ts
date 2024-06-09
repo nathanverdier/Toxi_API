@@ -11,8 +11,11 @@ import { bodyParserErrorHandler } from "./utils/bodyParserErrorHandler";
 const app = express();
 
 // Log HTTP requests
-app.use(morgan("dev"));
+app.use(morgan("tiny"));
 
+app.get('/', function (req, res) {
+    res.send('hello, world!')
+  })
 
 const { auth, requiredScopes } = require('express-oauth2-jwt-bearer');
 
