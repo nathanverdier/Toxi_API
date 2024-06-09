@@ -9,21 +9,24 @@ trigger:
     - push
 
 steps:
-  - name: print-env
-    image: busybox
-    commands:
-      - printenv    
  
   - name: build
-    image: node
+    image: node:latest
     environment:
-      MONGO_URL: 
+      CODEFIRST_CLIENTDRONE_ENV_DB_SERVER:
+        from_secret: db_server
+      CODEFIRST_CLIENTDRONE_ENV_MONGO_INITDB_ROOT_USERNAME: 
+        from_secret: mongo_root_username
+      CODEFIRST_CLIENTDRONE_ENV_MONGO_INITDB_ROOT_PASSWORD:
+        from_secret: mongo_root_password
+      CODEFIRST_CLIENTDRONE_ENV_MONGO_INITDB_DATABASE: "toxi_db"
+      CODEFIRST_CLIENTDRONE_ENV_MONGO_URL:
         from_secret: MONGO_URL
-      PORT: 80
-      HOST: localhost
+      CODEFIRST_CLIENTDRONE_ENV_PORT: 8081
+      CODEFIRST_CLIENTDRONE_ENV_HOST: "0.0.0.0"
     commands:
       - npm install
-      - npx ts-node ./src/index.ts
+      - npm run build
 
   - name: docker-build-and-push
     image: plugins/docker
@@ -45,6 +48,10 @@ steps:
       CONTAINERNAME: toxi-api
       COMMAND: create
       OVERWRITE: true
+      CODEFIRST_CLIENTDRONE_ENV_MONGO_URL:
+        from_secret: MONGO_URL
+      CODEFIRST_CLIENTDRONE_ENV_PORT: 8081
+      CODEFIRST_CLIENTDRONE_ENV_HOST: "0.0.0.0"
       ADMINS: nathanverdier,luciebedouret,chloemourgand
       CODEFIRST_CLIENTDRONE_ENV_API_BASEURL: http://toxi-api.net/
     depends_on: [ docker-build-and-push ]
