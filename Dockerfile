@@ -1,7 +1,7 @@
-FROM node:16
+FROM node:latest
 WORKDIR /app
 
-EXPOSE 80
+EXPOSE 8081
 
 COPY package*.json ./
 
@@ -11,4 +11,4 @@ COPY . .
 
 RUN npm run build
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "start" ]
