@@ -3,7 +3,7 @@ import { model, Schema } from "mongoose";
 
 const PersonSchema = new Schema<PersonModel>(
     {
-        _id: { type: String, required: true },
+        //_id: { type: String, required: true },
         image: { type: String, required: false },
         name: { type: String, required: true },
     },
