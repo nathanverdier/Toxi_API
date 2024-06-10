@@ -1,3 +1,4 @@
+import axios from 'axios';
 import express from "express";
 import { initializeCheckJwt } from "../app";
 import { personService } from "./PersonService";
@@ -21,6 +22,15 @@ PersonRouter.route('/')
         try {
             const newPerson = req.body;
             const addedPerson = await personService.addSomeone(newPerson);
+
+            // Notify the other project
+            const otherProjectApiUrl = 'http://other-project-api-url.com/add_person';
+            try {
+                await axios.post(otherProjectApiUrl, addedPerson);
+            } catch (error) {
+                console.error('The external AI is not accessible:', error);
+            }
+
             res.json(addedPerson);
         } catch (error) {
             console.error(error);
