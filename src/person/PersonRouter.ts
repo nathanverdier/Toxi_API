@@ -24,7 +24,7 @@ PersonRouter.route('/')
             const addedPerson = await personService.addSomeone(newPerson);
 
             // Notify the other project
-            const otherProjectApiUrl = 'http://other-project-api-url.com/add_person';
+            const otherProjectApiUrl = 'https://codefirst.iut.uca.fr/containers/ToxiTeam-toxi-iarecognition/add_person';
             try {
                 await axios.post(otherProjectApiUrl, addedPerson);
             } catch (error) {
