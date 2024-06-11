@@ -24,9 +24,10 @@ PersonRouter.route('/')
             const addedPerson = await personService.addSomeone(newPerson);
 
             // Notify the other project
-            const otherProjectApiUrl = 'https://codefirst.iut.uca.fr/containers/ToxiTeam-toxi-iarecognition/add_person';
+            const AIRecognition = 'https://codefirst.iut.uca.fr/containers/ToxiTeam-toxi-iarecognition/add_person';
             try {
-                await axios.post(otherProjectApiUrl, addedPerson);
+                await axios.post(AIRecognition, addedPerson);
+                console.log('The person has been successfully transmitted to AIRecognition.');
             } catch (error) {
                 console.error('The external AI is not accessible:', error);
             }
