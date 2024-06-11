@@ -26,8 +26,13 @@ PersonRouter.route('/')
             // Notify the other project
             const AIRecognition = 'https://codefirst.iut.uca.fr/containers/ToxiTeam-toxi-iarecognition/add_person';
             try {
-                await axios.post(AIRecognition, addedPerson);
-                console.log('The person has been successfully transmitted to AIRecognition.');
+                const response = await axios.post(AIRecognition, addedPerson);
+                console.log('Response status:', response.status);
+                if (response.status === 200) {
+                    console.log('The person has been successfully transmitted to AIRecognition.');
+                } else {
+                    console.log('Failed to transmit the person to AIRecognition. Response status:', response.status);
+                }
             } catch (error) {
                 console.error('The external AI is not accessible:', error);
             }
