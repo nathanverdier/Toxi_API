@@ -1,7 +1,8 @@
 import express from "express";
 import formidable from "formidable";
 import { initializeCheckJwt } from "../app";
-// import axios from "axios";
+import axios from "axios";
+import boom from "@hapi/boom";
 
 const checkJwt = initializeCheckJwt();
 
@@ -17,12 +18,14 @@ IdentityRouter.route('/')
                 // Parse form data (only need to retrieve files)
                 form.parse(req, async (err, _, files) => {
                     if (err) {
-                        console.log("aaaaah", err);
+                        console.error(err.stack);
+                        res.status(400).send('Error during data parsing');
                     }
 
                     // Check if file upload was successful
                     if (!files || !files.image) {
-                        console.log("bbbbbbbb", err);
+                        console.error(err.stack);
+                        boom.badRequest('Error no file found');
                     }
 
                     // Retrieve file data
@@ -31,13 +34,12 @@ IdentityRouter.route('/')
 
                     // Make HTTP call to AI URL
                     const aiUrl = process.env.AI_URL as string;
-                    // const response = await axios.get(aiUrl);
+                    const response = await axios.get(aiUrl);
 
-                    // if (response.status !== 200) {
-                    //     console.log("error");
-                    // }
+                    if (response.status !== 200) {
+                        console.log("error");
+                    }
 
-                    // const responseData = response.data;
                     const responseData = {
                         "face_locations": [
                             {
@@ -50,12 +52,20 @@ IdentityRouter.route('/')
                         "face_names": [
                             "Lucie"
                         ]
+                    };
+
+                    if (response.status !== 200) {
+                        console.error("Bad response status: ", response.status);
+                        boom.badRequest('Bad response from AI');
                     }
 
                     res.json({ data : responseData });
                 });
             } catch (error) {
-                console.error(error);
+
+                console.error("Unexpected error:", error);
+                boom.internal('Unexpected error occurred'); 
+                
             }
         });
 
