@@ -21,7 +21,6 @@ IdentityRouter.route('/')
                 // Parse form data (only need to retrieve files)
                 form.parse(req, async (err, _, files) => {
                     if (err) {
-                        console.log(err);
                         res.status(400).send('Error during data parsing');
                     }
 
