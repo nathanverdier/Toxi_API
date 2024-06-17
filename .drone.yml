@@ -22,6 +22,8 @@ steps:
       CODEFIRST_CLIENTDRONE_ENV_MONGO_INITDB_DATABASE: "toxi_db"
       CODEFIRST_CLIENTDRONE_ENV_MONGO_URL:
         from_secret: MONGO_URL
+      CODEFIRST_CLIENTDRONE_ENV_AI_URL:
+        from_secret: AI_URL
       CODEFIRST_CLIENTDRONE_ENV_PORT: 8081
       CODEFIRST_CLIENTDRONE_ENV_HOST: "0.0.0.0"
     commands:
@@ -50,6 +52,8 @@ steps:
       OVERWRITE: true
       CODEFIRST_CLIENTDRONE_ENV_MONGO_URL:
         from_secret: MONGO_URL
+      CODEFIRST_CLIENTDRONE_ENV_AI_URL:
+        from_secret: AI_URL
       CODEFIRST_CLIENTDRONE_ENV_PORT: 8081
       CODEFIRST_CLIENTDRONE_ENV_HOST: "0.0.0.0"
       ADMINS: nathanverdier,luciebedouret,chloemourgand
