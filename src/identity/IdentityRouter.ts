@@ -26,7 +26,6 @@ IdentityRouter.route('/')
 
                     // Check if file upload was successful
                     if (!files || !files.image) {
-                        console.log(err.stack);
                         boom.badRequest('Error no file found');
                     }
                     const image: formidable.File = files!.image![0];
