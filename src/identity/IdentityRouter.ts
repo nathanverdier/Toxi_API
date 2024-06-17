@@ -25,7 +25,7 @@ IdentityRouter.route('/')
                     }
 
                     // Check if file upload was successful
-                    if (!files || !files.image) {
+                    if (files == undefined || files.image == undefined) {
                         boom.badRequest('Error no file found');
                     }
                     console.log("files.image", files.image);
