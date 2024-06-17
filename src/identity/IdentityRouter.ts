@@ -25,14 +25,13 @@ IdentityRouter.route('/')
                     }
 
                     // Check if file upload was successful
-                    if (files == undefined || files.image == undefined) {
+                    const image: formidable.File | undefined = files.image ? files.image[0] : undefined;
+                    if(image == undefined){
                         boom.badRequest('Error no file found');
                     }
-                    console.log("files.image", files.image);
-                    const image: formidable.File = files!.image![0];
 
                     // Retrieve file data
-                    const imageData = fs.createReadStream(image.filepath);
+                    const imageData = fs.createReadStream(image!.filepath);
 
                     // Make HTTP call to AI URL
                     const aiUrl = process.env.AI_URL as string;
