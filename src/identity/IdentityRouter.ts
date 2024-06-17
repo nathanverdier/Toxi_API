@@ -28,6 +28,7 @@ IdentityRouter.route('/')
                     if (!files || !files.image) {
                         boom.badRequest('Error no file found');
                     }
+                    console.log("files.image", files.image);
                     const image: formidable.File = files!.image![0];
 
                     // Retrieve file data
