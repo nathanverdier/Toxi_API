@@ -46,9 +46,6 @@ IdentityRouter.route('/')
                     });
                     const responseData = response.data;
 
-                    res.json(responseData);
-            
-
                     // const responseData = {
                     //     "face_locations": [
                     //         {
@@ -65,8 +62,10 @@ IdentityRouter.route('/')
 
                     if (response.status !== 200) {
                         console.error("Bad response status: ", response.status);
-                        boom.badRequest('Bad response from AI');
+                        boom.badRequest('Bad response from AI', response.statusText);
                     }
+
+                    res.json(responseData);
                 });
 
             } catch (error) {
