@@ -21,13 +21,13 @@ IdentityRouter.route('/')
                 // Parse form data (only need to retrieve files)
                 form.parse(req, async (err, _, files) => {
                     if (err) {
-                        console.error(err.stack);
+                        console.log(err.stack);
                         res.status(400).send('Error during data parsing');
                     }
 
                     // Check if file upload was successful
                     if (!files || !files.image) {
-                        console.error(err.stack);
+                        console.log(err.stack);
                         boom.badRequest('Error no file found');
                     }
                     const image: formidable.File = files!.image![0];
@@ -61,7 +61,7 @@ IdentityRouter.route('/')
                     // };
 
                     if (response.status !== 200) {
-                        console.error("Bad response status: ", response.status);
+                        console.log("Bad response status: ", response.status);
                         boom.badRequest('Bad response from AI', response.statusText);
                     }
                     console.log("API response",responseData);
@@ -70,7 +70,7 @@ IdentityRouter.route('/')
 
             } catch (error) {
 
-                console.error("Unexpected error:", error);
+                console.log("Unexpected error:", error);
                 boom.internal('Unexpected error occurred'); 
                 
             }
