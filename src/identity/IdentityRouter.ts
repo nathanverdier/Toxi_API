@@ -64,7 +64,7 @@ IdentityRouter.route('/')
                         console.error("Bad response status: ", response.status);
                         boom.badRequest('Bad response from AI', response.statusText);
                     }
-
+                    console.log("API response",responseData);
                     res.json(responseData);
                 });
 
