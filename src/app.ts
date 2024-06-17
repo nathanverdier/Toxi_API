@@ -36,7 +36,6 @@ export function initializeCheckJwt() {
             });
             console.log('Auth initialized');
         } catch (error) {
-            console.error('Erreur lors de l\'initialisation de auth :', error);
         }
     }
     return checkJwt;
@@ -45,6 +44,8 @@ export function initializeCheckJwt() {
 app.use(initializeCheckJwt());
 
 import PersonRouter from "./person/PersonRouter";
+import IdentityRouter from "./identity/IdentityRouter";
+import { Boom } from "@hapi/boom";
 
 // Add CORS headers.
 app.use(
@@ -70,6 +71,7 @@ app.use(express.json());
  * This is documented in https://github.com/pillarjs/router/issues/38
  */
 app.use('/v1/person', PersonRouter);
+app.use('/v1/identity', IdentityRouter);
 //#endregion Application routes
 
 // Handle requests matching no routes.
